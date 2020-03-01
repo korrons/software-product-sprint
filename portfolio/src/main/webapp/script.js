@@ -25,4 +25,9 @@ function addRandomFact() {
   // Add it to the page.
   const factContainer = document.getElementById('fact-container');
   factContainer.innerText = fact;
+   
+  //fetching \data server 
+  fetch('/data').then(response => response.text()).then((data) => {
+    document.getElementById('data-container').innerText = data;
+  });
 }
