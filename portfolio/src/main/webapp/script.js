@@ -26,8 +26,14 @@ function addRandomFact() {
   const factContainer = document.getElementById('fact-container');
   factContainer.innerText = fact;
    
-  //fetching \data server 
-  fetch('/data').then(response => response.text()).then((data) => {
-    document.getElementById('data-container').innerText = data;
+  //fetching json string from /data
+  function getData() {
+  fetch('/data').then(response => response.json()).then((data) => {
+    const dataListElement = document.getElementById('data-container');
+          data.forEach((line) => {
+          dataListElement.appendChild(createListElement(line));
+          });
   });
+}
+
 }
