@@ -16,6 +16,9 @@ package com.google.sps.servlets;
 
 import java.io.IOException;
 import com.google.gson.Gson;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import java.util.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,19 +32,27 @@ List<String> messages;
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
      messages = new ArrayList<>();
+     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     // Convert the messages to JSON
     String json = convertToJson(messages);
     // Send the JSON as the response
     response.setContentType("application/json;");
     response.getWriter().println(json);
   }
+    //doPost function to add user input to list of comments
    @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
     String message = request.getParameter("text-input");
     messages.add(message);
+  //create entity to store comments in datastore
+  Entity storedComment = new Entity("Comments");
+  storedComment.setProperty("Comment", message);
+  DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+  datastore.put(storedComment);
   }
 
+  //function to convert to json
   private String convertToJson(Object object){
        Gson gson = new Gson();
        return gson.toJson(object);
