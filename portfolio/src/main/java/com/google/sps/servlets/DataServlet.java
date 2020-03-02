@@ -29,17 +29,21 @@ List<String> messages;
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
      messages = new ArrayList<>();
-     messages.add("Hi Korron!");
-     messages.add("Nice portfolio!");
-     messages.add("Hello World!");
     // Convert the messages to JSON
     String json = convertToJson(messages);
     // Send the JSON as the response
     response.setContentType("application/json;");
     response.getWriter().println(json);
   }
+   @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Get the input from the form.
+    String message = request.getParameter("text-input");
+    messages.add(message);
+  }
+
   private String convertToJson(Object object){
        Gson gson = new Gson();
        return gson.toJson(object);
+  }
 }
- }
