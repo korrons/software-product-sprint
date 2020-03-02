@@ -7,11 +7,11 @@
     <script src="script.js"></script>
   </head>
   <body>
-    <element onload="fetch('/data').then(response => response.text()).then((data)"
+    <body onload="fetchData()">
     <div id="content">
       <h1>Korron Shivers</h1>
-      <p><a href = "https://www.linkedin.com/in/korronshivers/">Linkedin</a> <a href = "https://github.com/korrons">Github</a>
       <img src="/images/headshot.jpg" alt = "Korron Shivers" height = "200" width = "150" class = "center">
+      <p><a href = "https://www.linkedin.com/in/korronshivers/">Linkedin</a> <a href = "https://github.com/korrons">Github</a>
       <p>Welcome to my portfolio!</p>
       <p>Click here to get a random fact about me:</p>
       <form>
@@ -37,11 +37,13 @@
           </ul>
     </div>
     <div id="comments">
+        <h3 class = center>Comments</h3>
         <form action="/data" method="POST">
-        <p style="margin-top:100px">Type a comment here!</p>
-        <textarea name="comment" placeholder="Hello Korron!"></textarea>
+        <p style="margin-top:100px" class = center>Type a comment here!</p>
+        <textarea name="comment" placeholder="Leave a comment!" class = center></textarea>
         <br/><br/>
         <input type="Submit"/>
       </form>
+    </div>  
   </body>
 </html>
