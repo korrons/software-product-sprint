@@ -23,43 +23,41 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
-import com.google.appengine.api.datastore.Query.SortDirection;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-  private List<String> comments;
-  
-  @Override
+  List<String> commentList = new ArrayList<>();
+
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    comments = new ArrayList<>();
-    Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
+    Query query = new Query("Input");
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
+
+    List<String> comments = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
-      String comment = (String) entity.getProperty("comment");
+      String comment = (String)entity.getProperty("Comment");
       comments.add(comment);
     }
+    Gson gson = new Gson();
     response.setContentType("application/json;");
     response.getWriter().println(convToJson(comments));
   }
-
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-      String comment = request.getParameter("comment");
-      Entity entity = new Entity("comment");
-      entity.setProperty("Comment", comment);
+      String input = request.getParameter("commentArea");
+      commentList.add(input);
+      Entity entity = new Entity("Input");
+      entity.setProperty("Comment", input);
       DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
       datastore.put(entity);
       response.sendRedirect("/index.html");
   }
-
-  //function toconvert to json
-   private String convToJson(Object object){
+  private String convToJson(Object object){
        Gson gson = new Gson();
        return gson.toJson(object);
    }
+
 }
