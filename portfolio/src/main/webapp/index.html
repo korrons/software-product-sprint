@@ -6,17 +6,16 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body>
     <body onload="fetchData()">
     <div id="content">
       <h1>Korron Shivers</h1>
-      <img src="/images/headshot.jpg" alt = "Korron Shivers" height = "200" width = "150" class = "center">
+      <img src="/images/headshot.jpg" alt = "Korron Shivers" height = "150" width = "150" class = "center">
       <p><a href = "https://www.linkedin.com/in/korronshivers/">Linkedin</a> <a href = "https://github.com/korrons">Github</a>
       <p>Welcome to my portfolio!</p>
       <p>Click here to get a random fact about me:</p>
-      <form>
-      <button onclick="addRandomFact()" class = "center">Random Fact</button>
+      <button id = "fact-button" onclick="addRandomFact()" class = "center">Random Fact</button>
       <div id="fact-container" class = "center"></div>
+      </form>
       <h2>About Me</h2>
       <p>My name is Korron Shivers, and I am a sophomore Computer Science major from Bowie, Maryland.
           I currently attend Hampton University, where I am a Resident Assistant and a member of the Association for Computing Machinery.
@@ -35,15 +34,19 @@
               <li>Reading books </li>
               <li>Hanging out with friends</li>
           </ul>
-    </div>
-    <div id="comments">
-        <h3 class = center>Comments</h3>
+        <h3>Comments</h3>
+        <p>Type a comment here!</p>
+
+        <ul id="commentsList"></ul>
+        <br></br>
+
         <form action="/data" method="POST">
-        <p style="margin-top:100px" class = center>Type a comment here!</p>
-        <textarea name="comment" placeholder="Leave a comment!" class = center></textarea>
-        <br/><br/>
+        <textarea name="commentArea" placeholder="Leave a comment!"></textarea>
+        <br></br>
         <input type="Submit"/>
-      </form>
+        <p>Type some text:</p>
+        </form>
+   
     </div>  
   </body>
 </html>
