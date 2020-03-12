@@ -25,18 +25,20 @@ function addRandomFact() {
   // Add it to the page.
   const factContainer = document.getElementById('fact-container');
   factContainer.innerText = fact;
+}
 
-  function fetchData(){
-    fetch("/data").then(response => response.json()).then(object => {
-          const ele = document.getElementById('data-container');
-          data.forEach((line) => {
-          ele.appendChild(createListElement(line));
-          });
-    })
-  }
-  function createListElement(input) {
-    const element = document.createElement('li');
-    element.innerText = input;
-    return element;
-  }
+function fetchData() {
+    console.log('Getting JSON from data')
+    fetch('/data').then(response => response.json()).then((data) => {
+        const element = document.getElementById('commentsList');
+        data.forEach((line) => { 
+        element.appendChild(createListElement(line));
+        });
+    });
+}
+
+function createListElement(input) {
+  const listElement = document.createElement('li');
+  listElement.innerText = input;
+  return listElement;
 }
