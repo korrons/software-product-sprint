@@ -13,16 +13,32 @@
 // limitations under the License.
 
 /**
- * Adds a random greeting to the page.
+ * Adds a random fact to the page.
  */
-function addRandomGreeting() {
-  const greetings =
-      ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
+function addRandomFact() {
+  const facts =
+      ['I have an older sister who is a nurse.', 'I like to play basketball.', 'My favorite color is black.', 'I like to eat pizza.'];
 
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+  // Pick a random fact.
+  const fact = facts[Math.floor(Math.random() * facts.length)];
 
   // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+  const factContainer = document.getElementById('fact-container');
+  factContainer.innerText = fact;
+}
+
+function fetchData() {
+    console.log('Getting JSON from data')
+    fetch('/data').then(response => response.json()).then((data) => {
+        const element = document.getElementById('commentsList');
+        data.forEach((line) => { 
+        element.appendChild(createListElement(line));
+        });
+    });
+}
+
+function createListElement(input) {
+  const listElement = document.createElement('li');
+  listElement.innerText = input;
+  return listElement;
 }

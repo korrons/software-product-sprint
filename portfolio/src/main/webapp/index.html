@@ -2,17 +2,51 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>My Portfolio</title>
+    <title>Korron Shivers</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body>
+    <body onload="fetchData()">
     <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
-    </div>
+      <h1>Korron Shivers</h1>
+      <img src="/images/headshot.jpg" alt = "Korron Shivers" height = "150" width = "150" class = "center">
+      <p><a href = "https://www.linkedin.com/in/korronshivers/">Linkedin</a> <a href = "https://github.com/korrons">Github</a>
+      <p>Welcome to my portfolio!</p>
+      <p>Click here to get a random fact about me:</p>
+      <button id = "fact-button" onclick="addRandomFact()" class = "center">Random Fact</button>
+      <div id="fact-container" class = "center"></div>
+      </form>
+      <h2>About Me</h2>
+      <p>My name is Korron Shivers, and I am a sophomore Computer Science major from Bowie, Maryland.
+          I currently attend Hampton University, where I am a Resident Assistant and a member of the Association for Computing Machinery.
+          I am an aspiring software engineer, as I believe in working towards the advancement and betterment of society. Some projects I have worked on include:
+          <ul> 
+              <li>Developing an app to raise awareness of environmental threats</li>
+              <li>Created a program that guesses a person's zodiac sign </li>
+              <li>Created a program to find the shortest path to a point on a graph</li>
+          </ul>       
+      </p>
+      <p>Since I was younger, I have always believed in the importance of hard work and doing everything to the best of my abilities.
+          I have always been the type of person to finish what I start, and put my best foot forward.
+          Although I am often busy, some of my hobbies include:
+          <ul> 
+              <li>Watching sports</li>
+              <li>Reading books </li>
+              <li>Hanging out with friends</li>
+          </ul>
+        <h3>Comments</h3>
+        <p>Type a comment here!</p>
+
+        <ul id="commentsList"></ul>
+        <br></br>
+
+        <form action="/data" method="POST">
+        <textarea name="commentArea" placeholder="Leave a comment!"></textarea>
+        <br></br>
+        <input type="Submit"/>
+        <p>Type some text:</p>
+        </form>
+   
+    </div>  
   </body>
 </html>

@@ -7,3 +7,20 @@
 #greeting-container {
   margin-top: 20px;
 }
+
+h1 {
+    color:blue;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+#borderimg {
+    border: 10px solid transparent;
+    padding: 15px;
+    border-image: url(border.png) 20 round;
+}
